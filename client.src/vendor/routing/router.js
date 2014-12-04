@@ -39,12 +39,15 @@ export default BaseRouter.extend({
       var router = this;
       Promise.resolve(newRoute.fetch(routeData))
         .then(function(data) {
-          if (newRoute !== router.currentRoute) { return; }
-          newRoute.show(data, routeData);
+          newRoute.triggerMethod('error', {status: 402, getResponseHeader: function() { return 0; }});
+          // newRoute.triggerMethod('fetch');
+          // if (newRoute !== router.currentRoute) { return; }
+          // newRoute.show(data, routeData);
+          // newRoute.triggerMethod('show');
         })
         .catch(function(e) {
           if (newRoute !== router.currentRoute) { return; }
-          newRoute.onError(e, routeData);
+          newRoute.triggerMethod('error', e, routeData);
         });
     }
   }
