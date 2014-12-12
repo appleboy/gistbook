@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       }
     },
 
-    jst: {
+    handlebars: {
       templates: {
         options: {
           prettify: true,
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          '<%= app.tmp %>/templates.js': ['<%= app.src %>/**/*.jst']
+          '<%= app.tmp %>/templates.js': ['<%= app.src %>/**/*.hbs']
         }
       }
     },
@@ -141,8 +141,8 @@ module.exports = function(grunt) {
         files: ['<%= app.src %>/fonts/**/*'],
         tasks: ['copy:fonts']
       },
-      jst: {
-        files: ['<%= app.src %>/**/*.jst'],
+      hbs: {
+        files: ['<%= app.src %>/**/*.hbs'],
         tasks: ['jst', 'webpack:dev']
       },
 
